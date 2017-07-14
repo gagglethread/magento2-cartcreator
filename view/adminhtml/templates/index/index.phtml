@@ -1,0 +1,76 @@
+<?php
+/**
+ * Copyright © 2017 gaggle. All rights reserved.
+ */
+if($block->getCart()){
+?>
+
+<form action="<?= $block->getUrl('cartcreator/cart/getlink') ?>" method="post">
+<input name="form_key" type="hidden" value="<?php echo $block->getFormKey();?>">
+<table>
+	<thead>
+		<tr>
+			<th>Product Name</th>
+			<th>Child Product</th>
+			<th>Qty</th>
+		</tr>
+	</thead>
+	<tbody>
+<?php
+foreach($block->getCart() as $key=>$item){
+	$product = $block->getProduct($item['id']);
+	?>
+	
+	<tr>
+		<?php
+		if($item['code']=='simple' || $item['code']=='downloadable'){
+		?>
+		<td><span><?= $product->getName() ?></span>
+		<input type="hidden" name="cart[<?= $key ?>][code]" value="<?= $item['code'] ?>"/>
+		</td>
+		<td>N/A</td>
+		<td><input name="cart[<?= $key ?>][qty]" value="<?= isset($item['qty'])?$item['qty']:1 ?>"/>
+		<input name="cart[<?= $key ?>][id]"  value="<?= $item['id'] ?>"  type="hidden"/>
+		</td>
+	<?php
+		}
+		elseif($item['code']=='configurable')
+		{
+	?>
+		<td><span><?= $product->getName() ?></span>
+		<input type="hidden" name="cart[<?= $key ?>][code]" value="<?= $item['code'] ?>"/>
+		</td>
+		<td>
+		<select name="cart[<?= $key ?>][child]">
+		<?php foreach($block->getChildProducts($product) as $pro){ ?>
+			<option value="<?= $pro->getId() ?>"><?= $pro->getName() ?></option>
+		<?php } ?>
+		</select>
+		</td>
+		<td>
+		<input name="cart[<?= $key ?>][id]"  value="<?= $item['id'] ?>"  type="hidden"/>
+		<input name="cart[<?= $key ?>][qty]" value="<?= isset($item['qty'])?$item['qty']:1 ?>"/>
+		</td>
+	<?php		
+		}
+		else
+		{
+
+			?>
+			<?php
+			echo 'Feature of add to cart is not added for '.$item['code'].' product. Currently it works only for simple and configurable and downloadable products';
+		}
+		?>
+		</tr>
+		<?php
+	}
+
+?>
+</tbody>
+<tr>
+	<td colspan="3" ><button type="submit">Get Cart Link</button></td>
+</tr>
+
+</form>
+</table>
+<?php } ?>
