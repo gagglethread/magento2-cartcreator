@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
     <menu>
-        <add id="Gaggle_Cartcreator::gaggle_index" title="Cart" module="Gaggle_Cartcreator"  sortOrder="20" dependsOnModule="Gaggle_Cartcreator" action="cartcreator/index/index" resource="Gaggle_Cartcreator::gaggle_index"/>
+    	<add id="Gaggle_Cartcreator::gaggle" title="Gaggle" module="Gaggle_Cartcreator"  sortOrder="20" dependsOnModule="Gaggle_Cartcreator" resource="Gaggle_Cartcreator::gaggle"/>
+    		<add id="Gaggle_Cartcreator::gaggle_cartcreator" title="Cart Creator" module="Gaggle_Cartcreator"  sortOrder="20" dependsOnModule="Gaggle_Cartcreator" resource="Gaggle_Cartcreator::gaggle_cartcreator" parent="Gaggle_Cartcreator::gaggle"/>
+        		<add id="Gaggle_Cartcreator::gaggle_cartcreator_index" title="Cart" module="Gaggle_Cartcreator"  sortOrder="20" dependsOnModule="Gaggle_Cartcreator" action="cartcreator/index/index" resource="Gaggle_Cartcreator::gaggle_cartcreator_index" parent="Gaggle_Cartcreator::gaggle_cartcreator" />
+        		<add id="Gaggle_Cartcreator::gaggle_cartcreator_links" title="Cart Links" module="Gaggle_Cartcreator"  sortOrder="20" dependsOnModule="Gaggle_Cartcreator" action="cartcreator/cart/links" resource="Gaggle_Cartcreator::gaggle_cartcreator_links" parent="Gaggle_Cartcreator::gaggle_cartcreator" />
     </menu>
 </config>
