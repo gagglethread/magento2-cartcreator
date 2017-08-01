@@ -67,7 +67,7 @@ class Add extends \Magento\Catalog\Controller\Adminhtml\Product
 
         $this->authSession->setCart($data);
         $this->messageManager->addSuccess(
-            __('A total of %1 record(s) have been added.', $productAdded)
+            __('%1 Items(s) have been added to cart.<a href="%2">View Cart</a>', $productAdded,$this->getUrl('cartcreator'))
         );
 
         return $this->resultFactory->create(ResultFactory::TYPE_REDIRECT)->setPath('catalog/product/index');
