@@ -69,7 +69,7 @@ class Getlink extends \Magento\Catalog\Controller\Adminhtml\Product
             __('Cart Link :'.$urlManager->getUrl('cartcreator/index/index',['id'=>$cartModel->getId(),'_nosid' => true ]))
         );
 
-        return $this->resultFactory->create(ResultFactory::TYPE_REDIRECT)->setPath('catalog/product/index');
+        return $this->resultFactory->create(ResultFactory::TYPE_REDIRECT)->setPath('cartcreator/cart/links');
        
     }
 }
