@@ -154,7 +154,18 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
                 'column_css_class' => 'col-id'
             ]
         );
-		$this->addColumn(
+        $this->addColumn(
+            'link',
+            [
+                'header' => __('Link'),
+                'index' => 'id',
+                'class' => 'details',
+                'sortable' => false,
+                'filter' => false,
+                'renderer' => 'Gaggle\Cartcreator\Block\Adminhtml\Cart\Renderer\Link'
+            ]
+        );
+        $this->addColumn(
             'details',
             [
                 'header' => __('details'),
@@ -162,8 +173,8 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
                 'class' => 'details'
             ]
         );
-		/*{{CedAddGridColumn}}*/
-
+		
+		
         $block = $this->getLayout()->getBlock('grid.bottom.links');
         if ($block) {
             $this->setChild('grid.bottom.links', $block);
